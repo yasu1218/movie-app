@@ -3,6 +3,7 @@ import { Text } from '@rneui/themed';
 import MoviesSearchForm from '../forms/MoviesSearchForm';
 import Loading from '../layout/Loading';
 import { getMovies } from '../../services/api'; // Import the API function to fetch movies
+import MoviesList from '../lists/MoviesList'; // Import the MoviesList component
 
 // MoviesContainer component that serves as a container for the movies list.
 // It manages the state of the movies, handles input changes, and fetches movies based on the selection input.
@@ -45,7 +46,7 @@ const MoviesContainer = ({ navigation }) => {
       setMovies(movies);
 
       // Debugging output
-      console.log('movies', movies);
+      // console.log('movies', movies);
     } catch (error) {
       console.error('Error fetching movies:', error);
     } finally {
@@ -62,8 +63,7 @@ const MoviesContainer = ({ navigation }) => {
       { isLoading 
         ? <Loading /> 
         : <>
-            <Text>Hello!</Text>
-            {/* <MoviesList navigation={navigation} movies={movies} />  */}
+            <MoviesList navigation={navigation} movies={movies} /> 
           </>
       }
     </>
