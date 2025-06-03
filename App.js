@@ -10,10 +10,10 @@ import AppStack from './src/components/stacks/AppStack';
 // Create a theme with light and dark colors.
 const theme = createTheme({
   lightColors: {
-    primary: 'blue'
+    primary: 'white'
   },
   darkColors: {
-    primary: 'blue'
+    primary: 'white'
   },
   components: {
     Button: {

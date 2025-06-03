@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 
 // Importing screens that will be used in the stack navigator
-import MoviesScreen from '../screens/MoviesScreen';
+import TabNavigation from '../navigations/TabNavigation';
 
 // Creating a stack navigator using createNativeStackNavigator
 const Stack = createNativeStackNavigator();
@@ -15,8 +15,8 @@ const AppStack = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen 
-          name="Movies" 
-          component={MoviesScreen} 
+          name="Tabs" 
+          component={TabNavigation} 
           options={{
             title: 'Movies App',
             headerStyle: {
