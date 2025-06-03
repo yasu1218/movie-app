@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 // Importing screens that will be used in the stack navigator
 import TabNavigation from '../navigations/TabNavigation';
+import MediaDetailsScreen from '../screens/MediaDetailsScreen';
 
 // Creating a stack navigator using createNativeStackNavigator
 const Stack = createNativeStackNavigator();
@@ -27,6 +28,15 @@ const AppStack = () => {
             },
           }}
         />
+        {/* For navigating to the movie details */}
+        <Stack.Screen
+          name='MediaDetails'
+          component={MediaDetailsScreen}
+          options={({ media_id }) => ({
+            headerBackTitle: 'Back',
+          })}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   )

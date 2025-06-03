@@ -32,7 +32,13 @@ const MovieCard = props => {
         <Text style={styles.text}>Popularity: {popularity.toFixed(3)}</Text>
         <Text style={styles.text}>Release Date: {release_date}</Text>
 
-        <TouchableOpacity style={styles.button} onPress={onPress}>
+        <TouchableOpacity 
+          style={styles.button} 
+          onPress={ () => {
+            navigation.setOptions({ title: title });
+            navigation.navigate('MediaDetails', { mediaId: movie_id }) 
+          }}
+        >
           <Text style={styles.buttonText}>More Details</Text>
         </TouchableOpacity>
       </View>
