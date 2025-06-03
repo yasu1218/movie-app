@@ -7,7 +7,7 @@ import TVShowsScreen from '../screens/TVShowsScreen';
 
 // Tab navigation component that uses Tab and TabView from RNE to create a tabbed interface
 // It contains three tabs: Movies, Search Reulsts and TV Shows. 
-const TabNavigation = () => {
+const TabNavigation = ({navigation}) => {
 
   const [index, setIndex] = React.useState(0);  // State to manage the currently selected tab index. Default = 0 (Movies tab)
 
@@ -40,7 +40,7 @@ const TabNavigation = () => {
       <TabView value={index} onChange={setIndex} animationType="timing" >
 
         <TabView.Item style={{ backgroundColor: '#eee', width: '100%' }}>
-          <MoviesScreen />
+          <MoviesScreen navigation={navigation} />
         </TabView.Item>
 
         <TabView.Item style={{ backgroundColor: '#eee', width: '100%' }}>
