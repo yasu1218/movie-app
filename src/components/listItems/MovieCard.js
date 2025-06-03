@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableHighlight } from 'react-native';
 
 // How to build image URL: 
 // https://developer.themoviedb.org/docs/image-basics
@@ -32,15 +32,15 @@ const MovieCard = props => {
         <Text style={styles.text}>Popularity: {popularity.toFixed(3)}</Text>
         <Text style={styles.text}>Release Date: {release_date}</Text>
 
-        <TouchableOpacity 
+        <TouchableHighlight 
           style={styles.button} 
+          underlayColor="#06c"
           onPress={ () => {
-            navigation.setOptions({ title: title });
             navigation.navigate('MediaDetails', { mediaId: movie_id }) 
           }}
         >
           <Text style={styles.buttonText}>More Details</Text>
-        </TouchableOpacity>
+        </TouchableHighlight>
       </View>
     </View>
   );
@@ -49,16 +49,17 @@ const MovieCard = props => {
 const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: '#eee',
     marginVertical: 8,
     marginHorizontal: 16,
-    borderRadius: 8,
+    // borderRadius: 8,
     overflow: 'hidden',
     elevation: 2,
   },
   imageContainer: {
     width: '30%',
-    height: 150,
+    maxWidth: 185,
+    aspectRatio: 1,
   },
   image: {
     width: '100%',
@@ -84,10 +85,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderRadius: 6,
     alignSelf: 'flex-start',
+    width: '100%',
   },
   buttonText: {
     color: '#fff',
     fontWeight: '600',
+    alignSelf: 'center',
   },
 });
 

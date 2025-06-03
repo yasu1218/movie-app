@@ -16,7 +16,7 @@ const MoviesContainer = ({ navigation }) => {
 
   // Function to handle input changes
   const handleInputChange = (newSelection) => {
-    console.log('handleInputChange', newSelection);
+    // console.log('handleInputChange', newSelection);
     setSelection(newSelection); // Update the selection state with the new value -> will trigger effect 
   };
 

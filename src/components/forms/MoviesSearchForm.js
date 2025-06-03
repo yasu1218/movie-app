@@ -33,6 +33,9 @@ const MoviesSearchForm = ({ onInputChange }) => {
         setItems={setItems}
         onChangeValue={onInputChange}
         placeholder="Select category"
+        style={{ backgroundColor  : '#eee', borderColor: '#ccc' }}
+        dropDownContainerStyle={{ backgroundColor: '#eee' , borderColor: '#ccc' }}
+        
       />
     </View>
   );

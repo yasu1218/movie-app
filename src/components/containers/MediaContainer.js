@@ -21,6 +21,11 @@ const MediaContainer = ({ navigation, route }) => {
 
         // console.log('Fetched media details:', data);
 
+        // Set the navigation title with the media title obtained
+        if (navigation && data?.title) {
+          navigation.setOptions({ title: data.title });
+        }
+
       } catch (error) {
         console.error('Failed to fetch media details:', error);
       }
