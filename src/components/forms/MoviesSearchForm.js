@@ -12,15 +12,10 @@ import DropDownPicker from 'react-native-dropdown-picker';
  * https://hossein-zare.github.io/react-native-dropdown-picker-website/docs
  */
 
-const MoviesSearchForm = ({ onInputChange }) => {
+const MoviesSearchForm = ({ onInputChange, categories, defaultCategory }) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('popular');
-  const [items, setItems] = useState([
-    { label: 'Now Playing', value: 'now_playing' },
-    { label: 'Popular', value: 'popular' },
-    { label: 'Top Rated', value: 'top_rated' },
-    { label: 'Upcoming', value: 'upcoming' },
-  ]);
+  const [value, setValue] = useState(defaultCategory);
+  const [items, setItems] = useState(categories);
 
   return (
     <View style={styles.movieDropDown}>

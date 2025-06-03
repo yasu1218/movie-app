@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { getMediaDetails } from '../../services/api'; 
 
+import { getTitle, getReleaseDate } from '../../utilities/mediaHelpers'; // Import utility methods for title and release date
+
 const MediaContainer = ({ navigation, route }) => {
 
-  const { mediaId } = route.params; // Extract mediaId from route parameters
+  const { mediaId, mediaType } = route.params; // Extract mediaId from route parameters
 
   const [media, setMedia] = useState(null); // State to hold media details
 
@@ -16,14 +18,14 @@ const MediaContainer = ({ navigation, route }) => {
       try {
 
 
-        const data = await getMediaDetails(mediaId);  // Fetch media details using the provided mediaId
+        const data = await getMediaDetails(mediaId, mediaType);  // Fetch media details using the provided mediaId
         setMedia(data);
 
         // console.log('Fetched media details:', data);
 
         // Set the navigation title with the media title obtained
-        if (navigation && data?.title) {
-          navigation.setOptions({ title: data.title });
+        if (navigation) {
+          navigation.setOptions({ title: getTitle(data, mediaType) });
         }
 
       } catch (error) {
@@ -44,7 +46,7 @@ const MediaContainer = ({ navigation, route }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>{media.title}</Text>
+      <Text style={styles.title}>{getTitle(media, mediaType)}</Text>
       <View style={styles.imageContainer}>
         <Image
           source={{ uri: `https://image.tmdb.org/t/p/w500${media.poster_path}` }}
@@ -54,7 +56,7 @@ const MediaContainer = ({ navigation, route }) => {
       </View>
       <Text style={styles.overview}>{media.overview}</Text>
       <Text style={styles.meta}>
-        Popularity: {media.popularity.toFixed(3)} | Release Date: {media.release_date}
+        Popularity: {media.popularity.toFixed(3)} | Release Date: {getReleaseDate(media, mediaType)} 
       </Text>
     </ScrollView>
   );

@@ -7,12 +7,12 @@ import MoviesList from '../lists/MoviesList'; // Import the MoviesList component
 
 // MoviesContainer component that serves as a container for the movies list.
 // It manages the state of the movies, handles input changes, and fetches movies based on the selection input.
-const MoviesContainer = ({ navigation }) => {
+const MoviesContainer = ({ navigation, mediaType, categories, defaultCategory }) => {
 
   // State variables
   const [isLoading, setIsLoading] = useState(false); // State to track loading status ("Loading results")
   const [movies, setMovies] = useState([]); // State to hold the list of movies
-  const [selection, setSelection] = useState('popular'); // State to hold the selected category (now_playing, popular, top_rated, upcoming)
+  const [selection, setSelection] = useState(defaultCategory); // State to hold the selected category.
 
   // Function to handle input changes
   const handleInputChange = (newSelection) => {
@@ -42,7 +42,7 @@ const MoviesContainer = ({ navigation }) => {
 
     try {
       // Get movies based on the selection
-      const movies = await getMovies(selection);
+      const movies = await getMovies(selection, mediaType);
       setMovies(movies);
 
       // Debugging output
@@ -59,11 +59,13 @@ const MoviesContainer = ({ navigation }) => {
     <>
       <MoviesSearchForm 
         onInputChange={handleInputChange} 
+        categories={categories} 
+        defaultCategory={defaultCategory}
       />
       { isLoading 
         ? <Loading /> 
         : <>
-            <MoviesList navigation={navigation} movies={movies} /> 
+            <MoviesList navigation={navigation} movies={movies} mediaType={mediaType} /> 
           </>
       }
     </>

@@ -48,7 +48,7 @@ const TabNavigation = ({navigation}) => {
         </TabView.Item>
 
         <TabView.Item style={{ backgroundColor: '#eee', width: '100%' }}>
-          <TVShowsScreen />
+          <TVShowsScreen navigation={navigation} />
         </TabView.Item>
       </TabView>
     </>

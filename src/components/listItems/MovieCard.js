@@ -12,7 +12,7 @@ const IMAGE_SIZE = 'w185'; // Image size to use (ideally this should be dynamic 
 
 const MovieCard = props => {
 
-  const { movie_id, image, title, popularity, release_date, navigation, onPress } = props;
+  const { movie_id, image, title, popularity, release_date, navigation, onPress, mediaType } = props;
   // console.log('Image url: ', `${IMAGE_BASE_URL}${IMAGE_SIZE}/${image}`);
 
   return (
@@ -35,8 +35,9 @@ const MovieCard = props => {
         <TouchableHighlight 
           style={styles.button} 
           underlayColor="#06c"
+          activeOpacity={0.85}
           onPress={ () => {
-            navigation.navigate('MediaDetails', { mediaId: movie_id }) 
+            navigation.navigate('MediaDetails', { mediaId: movie_id, mediaType: mediaType }) 
           }}
         >
           <Text style={styles.buttonText}>More Details</Text>

@@ -1,7 +1,15 @@
 import MoviesContainer from "../containers/MoviesContainer"
 
-// MoviesScreen component that serves as the main entry point for the "Index" screen of the app.
-// It renders the RecipesContainer component which is responsible for displaying a list of recipes.
-const MoviesScreen = ({ navigation }) => <MoviesContainer navigation={navigation} />;
+// Categories for Movies
+const categories = [
+    { label: 'Now Playing', value: 'now_playing' },
+    { label: 'Popular', value: 'popular' },
+    { label: 'Top Rated', value: 'top_rated' },
+    { label: 'Upcoming', value: 'upcoming' },
+  ];
+const defaultCategory = 'popular';
+
+// Rendering MoviesContainer component with mediaType set to "movie" to display movies.
+const MoviesScreen = ({ navigation }) => <MoviesContainer navigation={navigation}  mediaType="movie" categories={categories} defaultCategory={defaultCategory} />;
 
 export default MoviesScreen;
