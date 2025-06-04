@@ -65,3 +65,33 @@ export const getMediaDetails = async (mediaId, mediaType) => {
     throw error;
   } 
 }
+
+/* 
+ * searchMedia(searchTerm, searchType)
+ * Searches for media (movies, multi or TV shows) based on the search term and type.
+ */
+export const searchMedia = async (searchTerm, searchType = 'multi') => {
+
+  const page = 1; // Hardcoded for the moment. 
+  
+  // console.log('getMovies selection', selection);
+  // console.log('getMovies URL: ', `${API_URL}/${mediaType}/${selection}`);
+
+  try {
+    const response = await axios.get(`${API_URL}/search/${searchType}`, {
+      params: {
+        api_key: API_KEY,
+        language: 'en-US',
+        query: searchTerm,
+        page: page,
+      }
+    });
+
+    // console.log('Search results:', response.data);
+    return response.data;
+
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+    throw error;
+  }
+}

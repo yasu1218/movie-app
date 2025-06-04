@@ -1,6 +1,6 @@
-// import SeachContainer from "../containers/SearchContainer"
-import { Text } from '@rneui/themed';
+import SearchContainer from "../containers/SearchContainer"
 
-const SearchScreen = ({ navigation }) => <Text>Search Results</Text>;
+// Rendering SearchContainer 
+const SearchScreen = ({ navigation }) => <SearchContainer navigation={navigation} />;
 
 export default SearchScreen;

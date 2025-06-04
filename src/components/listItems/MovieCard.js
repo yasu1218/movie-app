@@ -15,6 +15,7 @@ const MovieCard = props => {
 
   const { movie_id, image, title, popularity, release_date, navigation, onPress, mediaType } = props;
   // console.log('Image url: ', `${IMAGE_BASE_URL}${IMAGE_WIDTH_THUMBNAIL}${image}`);
+  console.log('MovieCard:', `${mediaType} - ${title} (${movie_id})`);
 
   return (
     <View style={styles.card}>

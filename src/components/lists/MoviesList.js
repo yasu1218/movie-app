@@ -7,6 +7,7 @@ import { getTitle, getReleaseDate } from '../../utilities/mediaHelpers'; // Impo
 // It takes in props including navigation and movies, and renders each movie record using the MovieCard component.
 const MoviesList = props => {
   const { navigation, movies, mediaType } = props;
+  console.log("MoviesList - mediaType:", mediaType);
 
   return (
     <FlatList
@@ -15,11 +16,11 @@ const MoviesList = props => {
       <MovieCard 
         movie_id={item.id}
         image={item.poster_path}
-        title={getTitle(item, mediaType)}
+        title={getTitle(item, mediaType === "multi" ? item.media_type : mediaType)}
         popularity={item.popularity}
-        release_date={getReleaseDate(item, mediaType)}
+        release_date={getReleaseDate(item, mediaType === "multi" ? item.media_type : mediaType)}
         navigation={navigation}
-        mediaType={mediaType}
+        mediaType={mediaType === "multi" ? item.media_type : mediaType}
       />
      )}
     >  
