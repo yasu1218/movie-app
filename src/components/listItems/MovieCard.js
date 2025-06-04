@@ -1,26 +1,27 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableHighlight } from 'react-native';
 
-// How to build image URL: 
+// NOTE: How to build image URL: 
 // https://developer.themoviedb.org/docs/image-basics
 // base_url, a file_size and a file_path
 // Example: https://image.tmdb.org/t/p/w500/your_image_path.jpg
 
-// These should be stored somewhere else in a config file.. but I will keep these here for the moment. 
-const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/'; // Base URL for images
-const IMAGE_SIZE = 'w185'; // Image size to use (ideally this should be dynamic based on device size)
+// Importing constants for image URL and size
+import { IMAGE_BASE_URL, IMAGE_WIDTH_THUMBNAIL } from '../../config/mediaConfig'; 
+// Labels for media types
+import { getReleaseDateLabel } from '../../utilities/mediaHelpers';
 
 const MovieCard = props => {
 
   const { movie_id, image, title, popularity, release_date, navigation, onPress, mediaType } = props;
-  // console.log('Image url: ', `${IMAGE_BASE_URL}${IMAGE_SIZE}/${image}`);
+  // console.log('Image url: ', `${IMAGE_BASE_URL}${IMAGE_WIDTH_THUMBNAIL}${image}`);
 
   return (
     <View style={styles.card}>
       {/* Left column – Image */}
       <View style={styles.imageContainer}>
         <Image
-          source={{ uri: `${IMAGE_BASE_URL}${IMAGE_SIZE}/${image}` }}
+          source={{ uri: `${IMAGE_BASE_URL}${IMAGE_WIDTH_THUMBNAIL}${image}` }}
           style={styles.image}
           resizeMode="cover"
         />
@@ -30,7 +31,7 @@ const MovieCard = props => {
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.text}>Popularity: {popularity.toFixed(3)}</Text>
-        <Text style={styles.text}>Release Date: {release_date}</Text>
+        <Text style={styles.text}>{getReleaseDateLabel(mediaType)}: {release_date}</Text>
 
         <TouchableHighlight 
           style={styles.button} 

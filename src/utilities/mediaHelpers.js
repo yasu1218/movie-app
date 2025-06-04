@@ -22,13 +22,6 @@ export const getReleaseDate = (media, mediaType) => {
   return media.release_date || media.first_air_date || 'N/A';
 }
 
-// getReleaseDateLabel: Returns the date label of the media based on its type
-export const getReleaseDateLabel = (mediaType) => {
-  if (mediaType === 'movie') {  
-    return "Release Date";
-  }
-  else if (mediaType === 'tv') {
-    return media.first_air_date || 'N/A';
-  }
-  return media.release_date || media.first_air_date || 'N/A';
-}
+// getReleaseDateLabel: Returns the release date label of the media based on its type
+import { MEDIA_LABELS } from '../config/mediaConfig';
+export const getReleaseDateLabel = (mediaType) => MEDIA_LABELS[mediaType]?.releaseDate || 'Release Date';

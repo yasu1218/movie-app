@@ -1,13 +1,8 @@
 import MoviesContainer from "../containers/MoviesContainer"
+import { CATEGORIES_TV, DEFAULT_CATEGORY_TV } from "../../config/mediaConfig";
 
-// Categories for TV shows
-const categories = [
-    { label: 'Airing Today', value: 'airing_today' },
-    { label: 'On the Air', value: 'on_the_air' },
-    { label: 'Popular', value: 'popular' },
-    { label: 'Top Rated', value: 'top_rated' },
-  ];
-const defaultCategory = 'popular';
+const categories = CATEGORIES_TV;
+const defaultCategory = DEFAULT_CATEGORY_TV;
 
 // Rendering MoviesContainer with mediaType set to "tv" to display TV shows
 const TVShowsScreen = ({ navigation }) => <MoviesContainer navigation={navigation} mediaType="tv" categories={categories} defaultCategory={defaultCategory} />;

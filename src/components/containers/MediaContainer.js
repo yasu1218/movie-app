@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { getMediaDetails } from '../../services/api'; 
 
-import { getTitle, getReleaseDate } from '../../utilities/mediaHelpers'; // Import utility methods for title and release date
+// Importing constants for image URL and size
+import { IMAGE_BASE_URL, IMAGE_WIDTH_DETAILS } from '../../config/mediaConfig'; 
+// Helper methods for media details
+import { getTitle, getReleaseDate, getReleaseDateLabel } from '../../utilities/mediaHelpers'; // Import utility methods for title and release date
 
 const MediaContainer = ({ navigation, route }) => {
 
@@ -49,14 +52,14 @@ const MediaContainer = ({ navigation, route }) => {
       <Text style={styles.title}>{getTitle(media, mediaType)}</Text>
       <View style={styles.imageContainer}>
         <Image
-          source={{ uri: `https://image.tmdb.org/t/p/w500${media.poster_path}` }}
+          source={{ uri: `${IMAGE_BASE_URL}${IMAGE_WIDTH_DETAILS}${media.poster_path}` }}
           style={styles.image}
           resizeMode="cover"
         />
       </View>
       <Text style={styles.overview}>{media.overview}</Text>
       <Text style={styles.meta}>
-        Popularity: {media.popularity.toFixed(3)} | Release Date: {getReleaseDate(media, mediaType)} 
+        Popularity: {media.popularity.toFixed(3)} | {getReleaseDateLabel(mediaType)}: {getReleaseDate(media, mediaType)} 
       </Text>
     </ScrollView>
   );

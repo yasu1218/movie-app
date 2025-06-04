@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -14,8 +14,14 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 const MoviesSearchForm = ({ onInputChange, categories, defaultCategory }) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(defaultCategory);
-  const [items, setItems] = useState(categories);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    // Initialize categories and default value
+    setValue(defaultCategory);
+    setItems(categories);
+  }, [categories, defaultCategory]);
 
   return (
     <View style={styles.movieDropDown}>

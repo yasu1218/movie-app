@@ -12,8 +12,8 @@ export const getMovies = async (selection = 'popular', mediaType = 'movie') => {
 
   const page = 1; // Hardcoded for the moment. 
   
-  console.log('getMovies selection', selection);
-  console.log('getMovies URL: ', `${API_URL}/${mediaType}/${selection}`);
+  // console.log('getMovies selection', selection);
+  // console.log('getMovies URL: ', `${API_URL}/${mediaType}/${selection}`);
 
   try {
     const response = await axios.get(`${API_URL}/${mediaType}/${selection}`, {
