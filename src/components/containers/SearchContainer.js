@@ -9,9 +9,10 @@ const SearchContainer = ({ navigation }) => {
   // States
   const [searchResults, setSearchResults] = useState(null); // State to hold search results
   const [isLoading, setIsLoading] = useState(false);  // State to manage loading state
+  const [searchType, setSearchType] = useState('multi');  // State to hold the selected search type, default is 'multi'
 
   // Method to handle search input and type
-  const handleSearch = async (searchTerm, searchType) => {
+  const handleSearch = async (searchTerm) => {
     // Validate search term
     if (!searchTerm.trim()) {
       alert('Please enter a search keyword.');
@@ -33,7 +34,11 @@ const SearchContainer = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Search form for input and type selection */}
-      <MediaSearchForm onSearch={handleSearch} />
+      <MediaSearchForm
+        searchType={searchType}
+        setSearchType={setSearchType} 
+        onSearch={handleSearch} 
+      />
 
       {/* Display loading indicator or search results */}
       {isLoading ? (
@@ -43,7 +48,7 @@ const SearchContainer = ({ navigation }) => {
           Please initiate a search
         </Text>
       ) : (
-        <MoviesList navigation={navigation} movies={searchResults} mediaType={"multi"}  />
+        <MoviesList navigation={navigation} movies={searchResults} mediaType={searchType}  />
       )}
     </View>
   );

@@ -3,12 +3,11 @@ import { View, Text, TextInput, StyleSheet, TouchableHighlight } from 'react-nat
 import { Icon } from '@rneui/themed';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-const MediaSearchForm = ({ onSearch }) => {
+const MediaSearchForm = ({ searchType, setSearchType, onSearch }) => {
 
   // States
   const [searchTerm, setSearchTerm] = useState(''); // State to hold the search term input
   const [open, setOpen] = useState(false);  // State to control the dropdown visibility
-  const [searchType, setSearchType] = useState('multi');  // State to hold the selected search type, default is 'multi'
   // Items for the dropdown picker
   const [items, setItems] = useState([  
     { label: 'movie', value: 'movie' },
@@ -77,7 +76,7 @@ const MediaSearchForm = ({ onSearch }) => {
           underlayColor="#06c"
           activeOpacity={0.85}
           style={styles.touchableButton}
-          onPress={() => onSearch(searchTerm, searchType)}
+          onPress={() => onSearch(searchTerm)}
         >
           <View style={styles.buttonContent}>
             <Icon name="search" type="ionicon" color="#fff" size={20} />
