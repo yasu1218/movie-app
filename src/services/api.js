@@ -87,7 +87,17 @@ export const searchMedia = async (searchTerm, searchType = 'multi') => {
       }
     });
 
+    // Filter out 'person' type if using multi as search type.
+    if (searchType === 'multi') {
+      // new filtered results with only movies and TV shows
+      const filteredResults = response.data?.results?.filter(
+        item => item.media_type === 'movie' || item.media_type === 'tv');
+      // replace the results with filtered ones and return the response
+      return { ...response.data, results: filteredResults };
+    }
+
     // console.log('Search results:', response.data);
+    
     return response.data;
 
   } catch (error) {

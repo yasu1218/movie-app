@@ -10,19 +10,21 @@ import { View, Text, Image, StyleSheet, TouchableHighlight } from 'react-native'
 import { IMAGE_BASE_URL, IMAGE_WIDTH_THUMBNAIL } from '../../config/mediaConfig'; 
 // Labels for media types
 import { getReleaseDateLabel } from '../../utilities/mediaHelpers';
+// Placeholder image for missing images
+const placeholderImage = require('../../../assets/icon.png'); 
 
 const MovieCard = props => {
 
   const { movie_id, image, title, popularity, release_date, navigation, onPress, mediaType } = props;
   // console.log('Image url: ', `${IMAGE_BASE_URL}${IMAGE_WIDTH_THUMBNAIL}${image}`);
-  console.log('MovieCard:', `${mediaType} - ${title} (${movie_id})`);
+  // console.log('MovieCard:', `${mediaType} - ${title} (${movie_id})`);
 
   return (
     <View style={styles.card}>
       {/* Left column – Image */}
       <View style={styles.imageContainer}>
         <Image
-          source={{ uri: `${IMAGE_BASE_URL}${IMAGE_WIDTH_THUMBNAIL}${image}` }}
+          source={ image ? { uri: `${IMAGE_BASE_URL}${IMAGE_WIDTH_THUMBNAIL}${image}` } : placeholderImage}
           style={styles.image}
           resizeMode="cover"
         />

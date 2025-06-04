@@ -6,6 +6,8 @@ import { getMediaDetails } from '../../services/api';
 import { IMAGE_BASE_URL, IMAGE_WIDTH_DETAILS } from '../../config/mediaConfig'; 
 // Helper methods for media details
 import { getTitle, getReleaseDate, getReleaseDateLabel } from '../../utilities/mediaHelpers'; // Import utility methods for title and release date
+// Placeholder image for missing images
+const placeholderImage = require('../../../assets/icon.png'); 
 
 const MediaContainer = ({ navigation, route }) => {
 
@@ -52,7 +54,7 @@ const MediaContainer = ({ navigation, route }) => {
       <Text style={styles.title}>{getTitle(media, mediaType)}</Text>
       <View style={styles.imageContainer}>
         <Image
-          source={{ uri: `${IMAGE_BASE_URL}${IMAGE_WIDTH_DETAILS}${media.poster_path}` }}
+          source={ media.poster_path ? { uri: `${IMAGE_BASE_URL}${IMAGE_WIDTH_DETAILS}${media.poster_path}` } : placeholderImage}
           style={styles.image}
           resizeMode="cover"
         />

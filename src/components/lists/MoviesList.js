@@ -7,7 +7,7 @@ import { getTitle, getReleaseDate } from '../../utilities/mediaHelpers'; // Impo
 // It takes in props including navigation and movies, and renders each movie record using the MovieCard component.
 const MoviesList = props => {
   const { navigation, movies, mediaType } = props;
-  console.log("MoviesList - mediaType:", mediaType);
+  // console.log("MoviesList - mediaType:", mediaType);
 
   return (
     <FlatList
