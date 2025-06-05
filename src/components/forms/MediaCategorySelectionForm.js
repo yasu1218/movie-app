@@ -12,7 +12,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
  * https://hossein-zare.github.io/react-native-dropdown-picker-website/docs
  */
 
-const MoviesSearchForm = ({ onInputChange, categories, defaultCategory }) => {
+const MediaCategorySelectionForm = ({ onInputChange, categories, defaultCategory }) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([]);
@@ -34,15 +34,16 @@ const MoviesSearchForm = ({ onInputChange, categories, defaultCategory }) => {
         setItems={setItems}
         onChangeValue={onInputChange}
         placeholder="Select category"
-        style={{ backgroundColor  : '#eee', borderColor: '#ccc' }}
-        dropDownContainerStyle={{ backgroundColor: '#eee' , borderColor: '#ccc' }}
-        
+        style={styles.dropdownStyle}
+        dropDownContainerStyle={styles.dropDownContainerStyle}        
       />
     </View>
   );
 };
 
-// Styles for the MoviesSearchForm component
+export default MediaCategorySelectionForm;
+
+// Styles for the MediaCategorySelectionForm component
 const styles = StyleSheet.create({
   movieDropDown: {
     backgroundColor: '#eee',
@@ -51,6 +52,13 @@ const styles = StyleSheet.create({
     marginBottom: 32,
     zIndex: 1000, // Ensure dropdown is above other components
   },
+  dropdownStyle: {
+    backgroundColor: '#eee',
+    borderColor: '#ccc',
+  },
+  dropDownContainerStyle: {
+    backgroundColor: '#eee',
+    borderColor: '#ccc',
+  },
 });
 
-export default MoviesSearchForm;

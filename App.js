@@ -2,8 +2,6 @@ import { createTheme, ThemeProvider } from '@rneui/themed'; // Import React Nati
 import { StatusBar } from 'expo-status-bar'; // Import StatusBar from Expo
 import { SafeAreaProvider } from 'react-native-safe-area-context';  // Import SafeAreaProvider for safe area handling
 
-import Header from './src/components/layout/Header';
-
 // Import the main stack navigator for the app
 import AppStack from './src/components/stacks/AppStack';
 

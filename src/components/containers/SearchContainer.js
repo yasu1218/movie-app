@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import MediaSearchForm from '../forms/MediaSearchForm';
-import MoviesList from '../lists/MoviesList';
+import MediaList from '../lists/MediaList';
 import Loading from '../layout/Loading';
 import { searchMedia } from '../../services/api';
 
@@ -48,7 +48,7 @@ const SearchContainer = ({ navigation }) => {
           Please initiate a search
         </Text>
       ) : (
-        <MoviesList navigation={navigation} movies={searchResults} mediaType={searchType}  />
+        <MediaList navigation={navigation} movies={searchResults} mediaType={searchType}  />
       )}
     </View>
   );

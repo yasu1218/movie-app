@@ -1,10 +1,11 @@
-import MoviesContainer from "../containers/MoviesContainer"
+import MediaListContainer from "../containers/MediaListContainer"
 import { CATEGORIES_MOVIE, DEFAULT_CATEGORY_MOVIE } from "../../config/mediaConfig";
 
-const categories = CATEGORIES_MOVIE; // Importing movie categories from config
-const defaultCategory = DEFAULT_CATEGORY_MOVIE; // Importing default movie category from config
+// Set categories and default category for movies
+const categories = CATEGORIES_MOVIE; 
+const defaultCategory = DEFAULT_CATEGORY_MOVIE; 
 
-// Rendering MoviesContainer component with mediaType set to "movie" to display movies.
-const MoviesScreen = ({ navigation }) => <MoviesContainer navigation={navigation}  mediaType="movie" categories={categories} defaultCategory={defaultCategory} />;
+// Rendering MediaListContainer component with mediaType set to "movie" to display movies.
+const MoviesScreen = ({ navigation }) => <MediaListContainer navigation={navigation}  mediaType="movie" categories={categories} defaultCategory={defaultCategory} />;
 
 export default MoviesScreen;

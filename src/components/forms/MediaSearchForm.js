@@ -61,13 +61,7 @@ const MediaSearchForm = ({ searchType, setSearchType, onSearch }) => {
             setItems={setItems}
             placeholder="Select search type"
             style={styles.dropdown}
-            dropDownContainerStyle={{
-              backgroundColor: '#eee',
-              borderColor: '#ccc',
-              position: 'absolute', 
-              top: 40,
-              zIndex: 1000,
-            }}
+            dropDownContainerStyle={styles.dropdownContainer}
           />
         </View>
 
@@ -132,6 +126,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
     zIndex: 1000, // for dropdown overlap
   },
+  // Styles for the dropdown 
   dropdownWrapper: {
     flex: 6,
     marginRight: 8,
@@ -142,7 +137,14 @@ const styles = StyleSheet.create({
     backgroundColor  : '#eee', 
     borderColor: '#ccc'
   },
-
+  dropdownContainer: {
+    backgroundColor: '#eee',
+    borderColor: '#ccc',
+    position: 'absolute', 
+    top: 40,
+    zIndex: 1000,
+  },
+  // Styles for the search button
   touchableButton: {
     flex: 4, 
     backgroundColor: '#00bfff',
@@ -152,21 +154,24 @@ const styles = StyleSheet.create({
     marginTop: 0,
     paddingTop: 12,
     paddingBottom: 12,
-
   },
-
   buttonContent: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: 0,
   },
-
   buttonText: {
     color: '#fff',
     fontWeight: '600',
     marginLeft: 8,
     fontSize: 16,
   },
+  // Placeholder text for the dropdown (5th row)
+  dropdownPlaceholderText: { 
+    color: '#444', 
+    fontSize: 12, 
+    marginTop: 8 
+  }
 });
 
 export default MediaSearchForm;

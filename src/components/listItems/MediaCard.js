@@ -13,11 +13,12 @@ import { getReleaseDateLabel } from '../../utilities/mediaHelpers';
 // Placeholder image for missing images
 const placeholderImage = require('../../../assets/icon.png'); 
 
-const MovieCard = props => {
+
+const MediaCard = props => {
 
   const { movie_id, image, title, popularity, release_date, navigation, onPress, mediaType } = props;
   // console.log('Image url: ', `${IMAGE_BASE_URL}${IMAGE_WIDTH_THUMBNAIL}${image}`);
-  // console.log('MovieCard:', `${mediaType} - ${title} (${movie_id})`);
+  // console.log('MediaCard:', `${mediaType} - ${title} (${movie_id})`);
 
   return (
     <View style={styles.card}>
@@ -51,6 +52,9 @@ const MovieCard = props => {
   );
 };
 
+export default MediaCard;
+
+// Styles for the MediaCard component
 const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
@@ -98,5 +102,3 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 });
-
-export default MovieCard;

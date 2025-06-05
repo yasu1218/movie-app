@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Text } from '@rneui/themed';
-import MoviesSearchForm from '../forms/MoviesSearchForm';
+import MediaCategorySelectionForm from '../forms/MediaCategorySelectionForm';
 import Loading from '../layout/Loading';
 import { getMovies } from '../../services/api'; // Import the API function to fetch movies
-import MoviesList from '../lists/MoviesList'; // Import the MoviesList component
+import MediaList from '../lists/MediaList'; // Import the MediaList component
 
-// MoviesContainer component that serves as a container for the movies list.
+// MediaListContainer component that serves as a container for the movies list.
 // It manages the state of the movies, handles input changes, and fetches movies based on the selection input.
-const MoviesContainer = ({ navigation, mediaType, categories, defaultCategory }) => {
+const MediaListContainer = ({ navigation, mediaType, categories, defaultCategory }) => {
 
   // State variables
   const [isLoading, setIsLoading] = useState(false); // State to track loading status ("Loading results")
@@ -32,6 +32,10 @@ const MoviesContainer = ({ navigation, mediaType, categories, defaultCategory })
     }
   }, [selection]);
 
+  // Test method for testing purposes:
+  const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+  const DELAY_TIME = 0; // Delay for testing purposes to check loading state. Set to e.g., 3000 when testing. 
+
   // Debugging output
   // console.log('selection', selection);
 
@@ -42,7 +46,12 @@ const MoviesContainer = ({ navigation, mediaType, categories, defaultCategory })
 
     try {
       // Get movies based on the selection
-      const movies = await getMovies(selection, mediaType);
+      //const movies = await getMovies(selection, mediaType);
+      const [movies] = await Promise.all([
+        getMovies(selection, mediaType), // Fetch movies from the API
+        sleep(DELAY_TIME) // Simulate a delay for testing purposes
+      ]);
+
       setMovies(movies);
 
       // Debugging output
@@ -57,7 +66,7 @@ const MoviesContainer = ({ navigation, mediaType, categories, defaultCategory })
 
   return (
     <>
-      <MoviesSearchForm 
+      <MediaCategorySelectionForm 
         onInputChange={handleInputChange} 
         categories={categories} 
         defaultCategory={defaultCategory}
@@ -65,11 +74,11 @@ const MoviesContainer = ({ navigation, mediaType, categories, defaultCategory })
       { isLoading 
         ? <Loading /> 
         : <>
-            <MoviesList navigation={navigation} movies={movies} mediaType={mediaType} /> 
+            <MediaList navigation={navigation} movies={movies} mediaType={mediaType} /> 
           </>
       }
     </>
   )
 }
 
-export default MoviesContainer;
+export default MediaListContainer;

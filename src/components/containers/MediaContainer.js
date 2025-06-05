@@ -69,7 +69,7 @@ const MediaContainer = ({ navigation, route }) => {
 
 export default MediaContainer;
 
-
+// Styles for the MediaContainer component
 const styles = StyleSheet.create({
   container: {
     padding: 40,
