@@ -10,6 +10,7 @@ const SearchContainer = ({ navigation }) => {
   const [searchResults, setSearchResults] = useState(null); // State to hold search results
   const [isLoading, setIsLoading] = useState(false);  // State to manage loading state
   const [searchType, setSearchType] = useState('multi');  // State to hold the selected search type, default is 'multi'
+  const [displaySearchType, setDisplaySearchType] = useState('multi');  // State to hold the type of search results to display
 
   // Method to handle search input and type
   const handleSearch = async (searchTerm) => {
@@ -24,6 +25,7 @@ const SearchContainer = ({ navigation }) => {
       const data = await searchMedia(searchTerm, searchType);
       // console.log("searchResults", searchResults);
       setSearchResults(data?.results || []);
+      setDisplaySearchType(searchType); // Update display type to match search type
     } catch (error) {
       console.error('Search failed:', error);
     } finally {
@@ -48,7 +50,7 @@ const SearchContainer = ({ navigation }) => {
           Please initiate a search
         </Text>
       ) : (
-        <MediaList navigation={navigation} movies={searchResults} mediaType={searchType}  />
+        <MediaList navigation={navigation} movies={searchResults} mediaType={displaySearchType}  />
       )}
     </View>
   );
