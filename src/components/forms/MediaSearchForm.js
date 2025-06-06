@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
     borderColor: '#ccc',
     position: 'absolute', 
-    top: 30,
+    top: 34,
     zIndex: 1000,
   },
   // Styles for the search button

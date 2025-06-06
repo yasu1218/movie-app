@@ -34,7 +34,9 @@ const MediaCategorySelectionForm = ({ onInputChange, categories, defaultCategory
         setItems={setItems}
         onChangeValue={onInputChange}
         placeholder="Select category"
-        style={styles.dropdownStyle}
+        style={[styles.dropdownStyle, 
+          open && styles.focusBorder, // Change border color on focus
+        ]}
         dropDownContainerStyle={styles.dropDownContainerStyle}        
       />
     </View>
@@ -45,20 +47,29 @@ export default MediaCategorySelectionForm;
 
 // Styles for the MediaCategorySelectionForm component
 const styles = StyleSheet.create({
+  // Styles for border colors on focus
+  focusBorder: {
+    borderColor: '#00bfff',
+  },
+  // Styles for the dropdown picker
   movieDropDown: {
     backgroundColor: '#eee',
     marginHorizontal: 64,
     marginTop: 32,
     marginBottom: 32,
+    width: '60%',
+    alignSelf: 'center',
     zIndex: 1000, // Ensure dropdown is above other components
   },
   dropdownStyle: {
     backgroundColor: '#eee',
     borderColor: '#ccc',
+    minHeight: 35,
   },
   dropDownContainerStyle: {
     backgroundColor: '#eee',
     borderColor: '#ccc',
+    top: 34,
   },
 });
 

@@ -53,6 +53,10 @@ const SearchContainer = ({ navigation }) => {
         <Text style={styles.defaultText}>
           Please initiate a search
         </Text>
+      ) : searchResults.length === 0 ? (
+        <Text style={styles.defaultText}>
+          No results found
+        </Text>
       ) : (
         <MediaList navigation={navigation} movies={searchResults} mediaType={displaySearchType}  />
       )}
