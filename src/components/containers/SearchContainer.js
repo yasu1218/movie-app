@@ -11,15 +11,18 @@ const SearchContainer = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);  // State to manage loading state
   const [searchType, setSearchType] = useState('multi');  // State to hold the selected search type, default is 'multi'
   const [displaySearchType, setDisplaySearchType] = useState('multi');  // State to hold the type of search results to display
+  const [isError, setIsError] = useState(false); // State to manage error state
 
   // Method to handle search input and type
   const handleSearch = async (searchTerm) => {
     // Validate search term
     if (!searchTerm.trim()) {
-      alert('Please enter a search keyword.');
+      setIsError(true);
+      // alert('Please enter a search keyword.');
       return;
     }
     // Search media based on the search term and type
+    setIsError(false);
     setIsLoading(true);
     try {
       const data = await searchMedia(searchTerm, searchType);
@@ -40,6 +43,7 @@ const SearchContainer = ({ navigation }) => {
         searchType={searchType}
         setSearchType={setSearchType} 
         onSearch={handleSearch} 
+        isError={isError}
       />
 
       {/* Display loading indicator or search results */}

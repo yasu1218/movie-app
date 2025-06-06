@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, TouchableHighlight } from 'react-nat
 import { Icon } from '@rneui/themed';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-const MediaSearchForm = ({ searchType, setSearchType, onSearch }) => {
+const MediaSearchForm = ({ searchType, setSearchType, onSearch, isError }) => {
 
   // States
   const [searchTerm, setSearchTerm] = useState(''); // State to hold the search term input
@@ -28,7 +28,8 @@ const MediaSearchForm = ({ searchType, setSearchType, onSearch }) => {
       {/* Row #2: Search input field */}
       <View style={[
         styles.inputWrapper,
-        isFocused && { borderColor: '#00bfff' } // Change border color on focus
+        isFocused && !isError && styles.focusBorder, // Change border color on focus
+        isError && styles.errorBorder // Change border color on error
       ]}>
         <Icon name="search" type="ionicon" color="#bbb" style={styles.icon} />
         <TextInput
@@ -60,7 +61,10 @@ const MediaSearchForm = ({ searchType, setSearchType, onSearch }) => {
             setValue={setSearchType}
             setItems={setItems}
             placeholder="Select search type"
-            style={styles.dropdown}
+            style={[styles.dropdown, 
+              open && !isError && styles.focusBorder, // Change border color on focus
+              isError && styles.errorBorder // Change border color on error
+            ]}
             dropDownContainerStyle={styles.dropdownContainer}
           />
         </View>
@@ -79,9 +83,11 @@ const MediaSearchForm = ({ searchType, setSearchType, onSearch }) => {
         </TouchableHighlight>
       </View>
 
-      {/* Row 5: Placeholder text for the dropdown */}
-      <Text style={{ color: '#444', fontSize: 12, marginTop: 8 }}>
-        Please select a search type
+      {/* Row 5: Helper/error text for the search area */}
+      <Text style={[styles.searchHelperText,
+        isError && styles.errorText
+      ]}>
+        { !isError ? "Please select a search type" : "Movie/TV show name is required" }
       </Text>
     </View>
   );
@@ -102,6 +108,17 @@ const styles = StyleSheet.create({
   required: { 
     color: 'red' 
   },
+  // Styles for text & border colors on focus and error
+  focusBorder: {
+    borderColor: '#00bfff',
+  },
+  errorBorder: {
+    borderColor: 'red',
+  },
+  errorText: {
+    color: 'red',
+  },
+  // Styles for the input field
   inputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -135,13 +152,14 @@ const styles = StyleSheet.create({
   dropdown: {
     borderRadius: 6,
     backgroundColor  : '#eee', 
-    borderColor: '#ccc'
+    borderColor: '#ccc',
+    minHeight: 35,
   },
   dropdownContainer: {
     backgroundColor: '#eee',
     borderColor: '#ccc',
     position: 'absolute', 
-    top: 40,
+    top: 30,
     zIndex: 1000,
   },
   // Styles for the search button
@@ -167,7 +185,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   // Placeholder text for the dropdown (5th row)
-  dropdownPlaceholderText: { 
+  searchHelperText: { 
     color: '#444', 
     fontSize: 12, 
     marginTop: 8 
